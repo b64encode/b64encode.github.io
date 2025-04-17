@@ -1,2 +1,5 @@
-User-agent: *
-Disallow:
+
+    User-agent: *
+    Disallow: /private
+    Sitemap: https://b64encode.github.io/sitemap.xml
+    
