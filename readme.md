@@ -1,6 +1,6 @@
 # Online Tools
-Please go to [Online Tools](https://Decode64.github.io/)
+Please go to [Online Tools]([https://Decode64.github.io/](https://b64encode.github.io/))
 
 ## Contact
-The project's website is located at https://github.com/Decode64/online-tools  
-Author: Decode64@gmail.com
+The project's website is located at [Online Tools]([https://Decode64.github.io/](https://b64encode.github.io/))
+Author: listcub@gmail.com
