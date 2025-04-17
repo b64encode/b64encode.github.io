@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to Markdown Converter</title>
+    <link rel="stylesheet" href="styles.css">
+<style>body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.converter-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-section, .output-section {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#copyBtn {
+    background-color: #2196F3;
+    margin-top: 10px;
+}
+
+#copyBtn:hover {
+    background-color: #1E88E5;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML to Markdown Converter</h1>
+        <div class="converter-box">
+            <div class="input-section">
+                <h2>Input HTML</h2>
+                <textarea id="htmlInput" placeholder="Paste your HTML here..."></textarea>
+            </div>
+            <div class="button-section">
+                <button id="convertBtn">Convert →</button>
+                <button id="clearBtn">Clear</button>
+            </div>
+            <div class="output-section">
+                <h2>Markdown Output</h2>
+                <textarea id="markdownOutput" readonly placeholder="Markdown will appear here..."></textarea>
+                <button id="copyBtn">Copy Markdown</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+    <script src="script.js">document.addEventListener('DOMContentLoaded', () => {
+    const htmlInput = document.getElementById('htmlInput');
+    const markdownOutput = document.getElementById('markdownOutput');
+    const convertBtn = document.getElementById('convertBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    // Initialize Turndown converter
+    const turndownService = new TurndownService();
+
+    // Convert HTML to Markdown
+    convertBtn.addEventListener('click', () => {
+        try {
+            const html = htmlInput.value;
+            const markdown = turndownService.turndown(html);
+            markdownOutput.value = markdown;
+        } catch (error) {
+            alert('Error converting HTML to Markdown: ' + error.message);
+        }
+    });
+
+    // Clear inputs
+    clearBtn.addEventListener('click', () => {
+        htmlInput.value = '';
+        markdownOutput.value = '';
+    });
+
+    // Copy Markdown to clipboard
+    copyBtn.addEventListener('click', () => {
+        markdownOutput.select();
+        document.execCommand('copy');
+        alert('Markdown copied to clipboard!');
+    });
+});
+
+</script>
+</body>
+</html>
+
